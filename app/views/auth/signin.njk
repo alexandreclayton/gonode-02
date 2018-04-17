@@ -1,34 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Snippetfy &raquo; Salve seus snippets de código</title>
+{% extends 'layouts/default.njk' %}
 
-    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/dracula.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+{% block body %}
+  <div class="auth-wrapper">
+    <form method="POST" action="/authenticate" class="form-signin">
+      <h1 class="mb-4">Fazer login</h1>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+      <input name="email" type="email" class="form-control" placeholder="Digite seu e-mail" required="required" autofocus="autofocus">
+      <input name="password" type="password" class="form-control" placeholder="Sua senha secreta" required="required">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 
-    <script src="/main.js"></script>
-  </head>
-  <body>
-    <div class="auth-wrapper">
-      <form method="POST" action="/authenticate" class="form-signin">
-        <h1 class="mb-4">Fazer login</h1>
-
-        <input name="email" type="email" class="form-control" placeholder="Digite seu e-mail" required="required" autofocus="autofocus">
-        <input name="password" type="password" class="form-control" placeholder="Sua senha secreta" required="required">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-
-        <p class="mt-3">
-          <a href="/signup">Criar conta grátis</a>
-        </p>
-      </form>
-    </div>
-  </body>
-</html>
+      <p class="mt-3">
+        <a href="/signup">Criar conta grátis</a>
+      </p>
+    </form>
+  </div>
+{% endblock %}
