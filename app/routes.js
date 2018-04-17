@@ -3,6 +3,7 @@ const express = require('express');
 const routes = express.Router();
 
 const authMiddleware = require('./middlewares/auth');
+const guestMiddleware = require('./middlewares/guest');
 
 const authController = require('./controllers/authController');
 const dashboardController = require('./controllers/dashboardController');
@@ -14,8 +15,9 @@ routes.use((req, res, next) => {
   next();
 });
 
-routes.get('/', authController.signin);
-routes.get('/signup', authController.signup);
+routes.get('/', guestMiddleware, authController.signin);
+routes.get('/signup', guestMiddleware, authController.signup);
+routes.get('/signout', authController.logout);
 
 routes.post('/register', authController.register);
 routes.post('/authenticate', authController.authenticate);

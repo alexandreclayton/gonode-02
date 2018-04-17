@@ -53,4 +53,20 @@ module.exports = {
       return next(err);
     }
   },
+
+  logout(req, res, next) {
+    try {
+      req.session.destroy((err) => {
+        if (err) {
+          return next(err);
+        }
+
+        return res.redirect('/');
+      });
+
+      return true;
+    } catch (err) {
+      return next(err);
+    }
+  },
 };
