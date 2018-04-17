@@ -6,6 +6,8 @@ const routes = require('./app/routes');
 
 const app = express();
 
+app.use(express.static(path.join('app', 'public')));
+
 nunjucks.configure(path.resolve('app', 'views'), {
   autoescape: true,
   express: app,
