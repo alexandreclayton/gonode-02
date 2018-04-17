@@ -7,6 +7,7 @@ const guestMiddleware = require('./middlewares/guest');
 
 const authController = require('./controllers/authController');
 const dashboardController = require('./controllers/dashboardController');
+const categoryController = require('./controllers/categoryController');
 
 // set locals
 routes.use((req, res, next) => {
@@ -15,6 +16,10 @@ routes.use((req, res, next) => {
   next();
 });
 
+
+/**
+ * Auth
+ */
 routes.get('/', guestMiddleware, authController.signin);
 routes.get('/signup', guestMiddleware, authController.signup);
 routes.get('/signout', authController.logout);
@@ -22,8 +27,18 @@ routes.get('/signout', authController.logout);
 routes.post('/register', authController.register);
 routes.post('/authenticate', authController.authenticate);
 
+/**
+ * Dashboard
+ */
 routes.use('/app', authMiddleware);
 routes.get('/app/dashboard', dashboardController.index);
+
+/**
+ * Categories
+ */
+routes.post('/app/categories/create', categoryController.store);
+
+
 
 // error handler
 routes.use((err, req, res, _next) => {
