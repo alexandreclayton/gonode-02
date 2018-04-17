@@ -29,4 +29,28 @@ module.exports = {
       return next(err);
     }
   },
+
+  async authenticate(req, res, next) {
+    try {
+      const { email, password } = req.body;
+
+      const user = await User.findOne({ where: { email } });
+
+      if (!user) {
+        req.flash('error', 'E-mail/senha incorretos');
+        return res.redirect('back');
+      }
+
+      if (!await bcrypt.compare(password, user.password)) {
+        req.flash('error', 'E-mail/senha incorretos');
+        return res.redirect('back');
+      }
+
+      req.session.user = user;
+
+      return res.redirect('app/dashboard');
+    } catch (err) {
+      return next(err);
+    }
+  },
 };
