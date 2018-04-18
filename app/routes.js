@@ -47,6 +47,9 @@ routes.post('/app/snippets/create', snippetController.store);
 routes.put('/app/snippets/update/:id', snippetController.update);
 routes.delete('/app/snippets/delete/:id', snippetController.destroy);
 
+// catch 404
+routes.use((req, res) => res.render('errors/404'));
+
 // error handler
 routes.use((err, req, res, _next) => {
   res.status(err.status || 500);
