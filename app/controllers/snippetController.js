@@ -52,4 +52,17 @@ module.exports = {
       next(err);
     }
   },
+
+  async destroy(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      await Snippet.destroy({ where: { id } });
+
+      req.flash('success', 'Snippet deletado com sucesso');
+      res.redirect(`/app/categories/${req.body.CategoryId}`);
+    } catch (err) {
+      next(err);
+    }
+  },
 };

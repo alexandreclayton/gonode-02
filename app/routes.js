@@ -45,6 +45,7 @@ routes.post('/app/categories/create', categoryController.store);
 routes.get('/app/categories/:categoryId/snippets/:id', snippetController.show);
 routes.post('/app/snippets/create', snippetController.store);
 routes.put('/app/snippets/update/:id', snippetController.update);
+routes.delete('/app/snippets/delete/:id', snippetController.destroy);
 
 // error handler
 routes.use((err, req, res, _next) => {
