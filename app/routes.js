@@ -8,6 +8,7 @@ const guestMiddleware = require('./middlewares/guest');
 const authController = require('./controllers/authController');
 const dashboardController = require('./controllers/dashboardController');
 const categoryController = require('./controllers/categoryController');
+const snippetController = require('./controllers/snippetController');
 
 // set locals
 routes.use((req, res, next) => {
@@ -15,7 +16,6 @@ routes.use((req, res, next) => {
   res.locals.flashError = req.flash('error');
   next();
 });
-
 
 /**
  * Auth
@@ -36,9 +36,13 @@ routes.get('/app/dashboard', dashboardController.index);
 /**
  * Categories
  */
+routes.get('/app/categories/:id', categoryController.show);
 routes.post('/app/categories/create', categoryController.store);
 
-
+/**
+ * Snippets
+ */
+routes.post('/app/snippets/create', snippetController.store);
 
 // error handler
 routes.use((err, req, res, _next) => {
