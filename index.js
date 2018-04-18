@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const routes = require('./app/routes');
 const sessionConfig = require('./config/session');
+const methodOverride = require('method-override');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.set('view engine', 'njk');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(methodOverride('_method'));
 
 app.use('/', routes);
 
