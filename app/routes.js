@@ -42,6 +42,7 @@ routes.post('/app/categories/create', categoryController.store);
 /**
  * Snippets
  */
+routes.get('/app/categories/:categoryId/snippets/:id', snippetController.show);
 routes.post('/app/snippets/create', snippetController.store);
 
 // error handler
